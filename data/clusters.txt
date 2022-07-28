@@ -1,0 +1,14 @@
+>Cluster 1
+4kpp,A,1
+>Cluster 2
+4kjs,A,0
+4k1c,A,1
+4kjr,A,1
+>Cluster 3
+5hwx,A,1
+5hwy,A,1
+5jdh,A,1
+5jdm,A,1
+5jdq,A,1
+3v5s,A,1
+3v5u,A,1
