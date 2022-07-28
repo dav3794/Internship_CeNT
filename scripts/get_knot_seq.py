@@ -17,13 +17,9 @@ def load_knotted_OTC():
         print("Error")
         return 0
 
-    #print(knotted_OTC)
     knotted_OTC = knotted_OTC.drop_duplicates()
     knotted_OTC = knotted_OTC.to_numpy()
     size = len(knotted_OTC)
-    #knotted_OTC = np.delete(knotted_OTC, [1,2,3], axis=1)
-    #knotted_OTC = np.insert(knotted_OTC, 2, np.full(size, ''), axis=1)
-    #knotted_OTC = np.insert(knotted_OTC, 3, np.full(size, ''), axis=1)
     print(knotted_OTC)
     return knotted_OTC
 
@@ -33,7 +29,6 @@ def load_ids(pfam):
     df_knots = df_knots.to_numpy()
 
     size = len(df_knots)
-    #df_knots = np.delete(df_knots, [1,2,3], axis=1)
     df_knots = np.insert(df_knots, 3, np.full(size, ''), axis=1)
     df_knots = np.insert(df_knots, 4, np.full(size, ''), axis=1)
     print(df_knots)
@@ -72,7 +67,6 @@ def get_seq(knotted_file, drop_dupl_seq=True):
                 match_results = re.search(subpattern, loc_knot, re.IGNORECASE)
                 loc_knot = match_results.group()
                 loc_knot = re.sub('"', "", loc_knot)
-                #print(id, loc_knot)
                 knotted_file[i][4] = loc_knot
 
             #lower, upper = map(int, loc_knot.split('-'))
@@ -93,10 +87,7 @@ def save_data(df, pfam):
     if not isinstance(df, pd.DataFrame):
         df = pd.DataFrame(df)
 
-    #header_txt = ['full_sequence', 'knot_loc', 'knot_sequence']
     header_csv = ['pdb_id', 'chain', "knotted", 'sequence', 'knot_loc']
-
-    #df.to_csv("OTC_with_knots_loc.txt", header=header_txt, index=False, columns=[4,5,6])
     df.to_csv(f"{pfam}_data.csv", header=header_csv, index=False)
     print("Data saved.")
 

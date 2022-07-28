@@ -11,7 +11,6 @@ def convert_to_fasta(file):
     for line in data:
         t = map(str, line[0:3])
         header = ">"+",".join(t)
-        #header += str(line[4])
         output += (header+"\n")
         seq = line[3]
         size = len(seq)
@@ -39,14 +38,13 @@ def convert_to_csv(file):
                 entry = match_results.group()
                 entry = re.sub("AFDB:AF-", "", entry)
                 entry = re.sub("-F1", "", entry)
-                #print(entry)
 
             else:
                 seq_temp += line.strip()
         else:
             data.append([entry, seq_temp])
             print("Done")
-    #print(data)
+
     pd.DataFrame(data).drop_duplicates(1).to_csv(f"{file}.txt", sep=",", header=header, index=False)
 
 #convert_to_fasta("PF01699_data")
